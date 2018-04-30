@@ -37,80 +37,43 @@
     }
   }
   // called when a message arrives
+
 client.onMessageArrived = function (message) {
   var led1 = document.getElementById('led1');
   var led2 = document.getElementById('led2');
+  var digitalData = [];
+  var realData = [];
 
   datos = Array(message.payloadString);
-  datos = datos[0].split(',');   // mandas separar la primera string que es la string entrante por el mqtt
-                                 //sub string borra el primer dato que es [" ya que esto llega con el primer dato de la recien separar cadena
-                                 // lo mimsom que el renglon anterior pero con el ultimo dato de la recien separada cadena
-  console.log(datos);            //  imprime los datos ya convertidos en arreglo
-if(datos[0] == "true" || datos[0] ==  "false"){
-
-
-  datos[13] = datos[13]/100;
-  if (  (datos[3]) >= 300 ) {
-      datos[13] = datos[3] - 655.36;
+  datos = datos[0].split(',');                                    // mandas separar la primera string que es la string entrante por el mqtt
+  // lo mimsom que el renglon anterior pero con el ultimo dato de la recien separada cadena
+  //console.log(datos);           
+  //  imprime los datos ya convertidos en arreglo
+  for(var i = 0; i < datos.length; i++){
+    if(datos[i] == "true" || datos[i] == "false"){
+      digitalData.push(datos[i]);
+      // console.log("Algo");
     }
-
-    datos[11] = datos[11]/100;
-    if (  (datos[11]) >= 300 ) {
-      datos[11] = datos[11] - 655.36;
+    else {
+      realData.push(datos[i]);
+      // console.log("Otro algo");
     }
+  }
+
+  datos = []; // Dejo en blanco el arreglo
+  // Agrego los datos reales al arreglo
+  for(var i = 0; i < realData.length; i++){
+    datos.push(realData[i]);
+  }
+
+  // Agrego los digitales
+  for(var i = 0; i < digitalData.length; i++){
+    datos.push(digitalData[i]);
+  }
+  console.log(datos);
 
 
-
-              //LEDS
-
-        //UNIDAD 1 DIGITALES
-
-    if (datos[1] == "false"){
-      led1.classList.add('on');
-    }else{
-      led1.classList.remove("on");
-    }
-    
-    if (datos[1] == "false"){
-      led2.classList.add('on');
-    }
-    else{
-      led2.classList.remove("on");
-    }
-        if (datos[2] == "false"){
-      led3.classList.add('on');
-    }
-    else{
-      led3.classList.remove("on");
-    }
-    
-    if (datos[3] == "false"){
-      led4.classList.add('on');
-    }
-    else{
-      led4.classList.remove("on");
-    }
-        if (datos[4] == "false"){
-      led5.classList.add('on');
-    }
-    else{
-      led5.classList.remove("on");
-    }
-    }
-
-
-
-
-
-
-
-
-
-
-
-      else{
-        
-        datos[3] = datos[3]/100;
+  datos[3] = datos[3]/100;
   if (  (datos[3]) >= 300 ) {
       datos[3] = datos[3] - 655.36;
     }
@@ -157,12 +120,6 @@ if(datos[0] == "true" || datos[0] ==  "false"){
     else{
       led5.classList.remove("on");
     }
-
-      }
-
-  }
-
-
-
+    }
 
 

@@ -4,9 +4,7 @@ Highcharts.setOptions({
     }
 });
 
- var datos = ["Pot. Act. U1",        //0
-             "Pot. Act. U2" + ""   //9
-]+ '';
+datos = [];
 
 
 var gaugeOptions = {
@@ -129,7 +127,7 @@ setInterval(function () {
 
     if (chartSpeed) {
         point = chartSpeed.series[0].points[0];
-        inc = datos[0];
+        inc = datos[0] / 100;
         newVal = inc;
 
        // if (newVal < 0 || newVal > 200) {
@@ -142,7 +140,7 @@ setInterval(function () {
     // RPM
     if (chartRpm) {
         point = chartRpm.series[0].points[0];
-        inc = datos[2]; 
+        inc = datos[2] / 100; 
         newVal = inc;
 
       //  if (newVal < 0 || newVal > 200) {
