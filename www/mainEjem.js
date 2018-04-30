@@ -1,13 +1,13 @@
 
   // Create a client instance
-  var client = new Messaging.Client("m14.cloudmqtt.com", 36202,"Prueba");
+  var client = new Messaging.Client("m14.cloudmqtt.com", 36202,"IngSandoval");
   //Example client = new Paho.MQTT.Client("m11.cloudmqtt.com", 32903, "web_" + parseInt(Math.random() * 100, 10));
 
 
   var options = {
     useSSL: true,
-    userName: "Prueba",
-    password: "33839727",
+    userName: "IngSandoval",
+    password: "1234",
     onSuccess:onConnect,
     onFailure:doFail
   }
